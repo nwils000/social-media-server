@@ -10,9 +10,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('create-user/', create_user),
-    path('create-image/', create_image),
-    path('get-images/', get_images),
+    # path('create-image/', create_image),
     path('profile/', get_profile),
+    path('get-following-posts/', get_following_posts),
     path('refresh/', TokenRefreshView.as_view()),
     path('token/', TokenObtainPairView.as_view()),
 ]

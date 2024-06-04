@@ -33,19 +33,22 @@ def get_profile(request):
   serializer = ProfileSerializer(profile, many=False)
   return Response(serializer.data)
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-@parser_classes([MultiPartParser, FormParser])
-def create_image(request):
-  image_serialized = ImageSerializer(data=request.data)
-  if image_serialized.is_valid():
-    image_serialized.save()
-    return Response(image_serialized.data, status.HTTP_201_CREATED)
-  return Response(image_serialized.errors, status.HTTP_400_BAD_REQUEST)
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# @parser_classes([MultiPartParser, FormParser])
+# def create_image(request):
+#   image_serialized = ImageSerializer(data=request.data)
+#   if image_serialized.is_valid():
+#     image_serialized.save()
+#     return Response(image_serialized.data, status.HTTP_201_CREATED)
+#   return Response(image_serialized.errors, status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_images(request):
-  images = Image.objects.all()
-  images_serialized = ImageSerializer(images, many=True)
-  return Response(images_serialized.data)
+def get_following_posts(request):
+   user = request.user
+   profile = Profile.objects.get(user=user)
+   following = profile.following
+   followers = profile.followers
+   profile_serializer = ProfileSerializer(profile, many=False)
+   return Response(profile_serializer.data)

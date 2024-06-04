@@ -6,12 +6,21 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields = '__all__'
 
-class ProfileSerializer(serializers.ModelSerializer):
+class SimpleProfileSerializer(serializers.ModelSerializer):
   class Meta:
     model = Profile
     fields = ['id', 'first_name', 'last_name']
 
-class ImageSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
+  following = SimpleProfileSerializer(many=True, read_only =True)
+  followers = SimpleProfileSerializer(many=True, read_only =True)
+
   class Meta:
-    model = Image
-    fields = ['id', 'title', 'image', 'created_at']
+    model = Profile
+    fields = '__all__'
+
+
+# class ImageSerializer(serializers.ModelSerializer):
+#   class Meta:
+#     model = Image
+#     fields = ['id', 'title', 'image', 'created_at']
