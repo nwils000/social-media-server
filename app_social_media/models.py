@@ -12,7 +12,7 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
-  profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+  profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
   description = models.TextField(max_length=1000)
   image = models.ImageField(upload_to='images/')
   created_at = models.DateTimeField(auto_now_add=True)
