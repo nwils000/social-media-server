@@ -13,7 +13,12 @@ urlpatterns = [
     path('create-post/', create_post),
     path('profile/', get_profile),
     path('get-following-posts/', get_following_posts),
-    # path('get-posts/', get_posts),
+    path('add-like-to-post/', add_like_to_post),
+    path('add-comment-to-post/', add_comment_to_post),
+    path('get-profile-to-see/', get_profile_to_see),
+    path('update-profile/', update_profile),
+    path('update-post/', update_post),
+    path('delete-post/', delete_post),
     path('refresh/', TokenRefreshView.as_view()),
     path('token/', TokenObtainPairView.as_view()),
 ]
